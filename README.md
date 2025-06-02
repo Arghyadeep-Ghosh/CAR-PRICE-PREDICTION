@@ -25,6 +25,3 @@ The model uses inputs like year of purchase, showroom price, kilometers driven, 
 - Transmission Type (Manual, Automatic)  
 
 ---
-
-## Project Structure
-
