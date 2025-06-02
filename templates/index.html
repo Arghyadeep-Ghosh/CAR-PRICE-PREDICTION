@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Price Predictor</title>
+    <style>
+        body {
+            background-color: lightslategray;
+            text-align: center;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        form {
+            background-color: white;
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h2, h3 {
+            color: darkblue;
+        }
+
+        input, select {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            width: 60%;
+            padding: 12px;
+            font-size: 18px;
+            background-color: darkcyan;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: teal;
+        }
+
+        .result {
+            margin-top: 30px;
+            font-size: 20px;
+            color: navy;
+        }
+    </style>
+</head>
+
+<body>
+
+    <form action="{{ url_for('predict') }}" method="post">
+        <h2>Car Selling Price Predictor</h2>
+
+        <h3>Year</h3>
+        <input name="Year" type="number" placeholder="Enter the Year" required>
+
+        <h3>What is the Showroom Price? (In lakhs)</h3>
+        <input name="Present_Price" type="number" step="0.01" placeholder="e.g., 5.6" required>
+
+        <h3>How Many Kilometers Driven?</h3>
+        <input name="Kms_Driven" type="number" placeholder="e.g., 35000" required>
+
+        <h3>How many owners had the car previously? (0/1/3)</h3>
+        <input name="Owner" type="number" placeholder="e.g., 0" required>
+
+        <h3>What is the Fuel Type?</h3>
+        <select name="Fuel_Type" required>
+            <option value="Petrol">Petrol</option>
+            <option value="Diesel">Diesel</option>
+            <option value="CNG">CNG</option>
+        </select>
+
+        <h3>Are you a Dealer or an Individual?</h3>
+        <select name="Seller_Type" required>
+            <option value="Dealer">Dealer</option>
+            <option value="Individual">Individual</option>
+        </select>
+
+        <h3>Transmission Type</h3>
+        <select name="Transmission" required>
+            <option value="Mannual">Manual Car</option>
+            <option value="Automatic">Automatic Car</option>
+        </select>
+
+        <br><br>
+        <button type="submit">Calculate the Selling Price</button>
+
+        <div class="result">
+            <h3>{{ prediction_text }}</h3>
+        </div>
+    </form>
+
+</body>
+
+</html>
